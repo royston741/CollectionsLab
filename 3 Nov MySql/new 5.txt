@@ -1,0 +1,383 @@
+/*
+	Program : MySQL
+	@Author : Royston
+	@Date :3 Nov
+*/
+
+
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database ABC;
+Query OK, 1 row affected (0.07 sec)
+
+mysql>
+mysql> use ABC;
+Database changed
+mysql>
+mysql> create table project(
+    ->     pNo int,
+    ->     pName varchar(70),
+    ->     budget int,
+    ->     dNo int,
+    -> PRIMARY KEY(pNo)
+    -> );
+Query OK, 0 rows affected (0.10 sec)
+
+mysql>
+mysql> create table dept(
+    -> dNo int,
+    -> dName varchar(100),
+    -> location varchar(100),
+    -> PRIMARY KEY(dNo)
+    -> );
+Query OK, 0 rows affected (0.11 sec)
+
+mysql>
+mysql> create table emp(
+    ->     eNo int,
+    ->     eName varchar(100),
+    -> salary int,
+    -> designation varchar(100),
+    ->     pNo int,
+    ->     dNo int,
+    ->     FOREIGN KEY(dNo) REFERENCES dept(dNo));
+Query OK, 0 rows affected (0.15 sec)
+
+mysql>
+mysql>
+mysql> INSERT INTO dept VALUES(101,"A Dept","New Delhi");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO dept VALUES(102,"B Dept","Chennai");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO dept VALUES(103,"C Dept","Mumbai");
+Query OK, 1 row affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO project VALUES(11,"Java Desktop",40000,101);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO project VALUES(12,"Java Web",50000,102);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO project VALUES(13,"PHP",20000,103);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO project VALUES(14,"Python",25000,101);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO project VALUES(15,"AWS",15000,102);
+Query OK, 1 row affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO emp VALUES(1,"Raj",20000,"Manager",11,101);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO emp VALUES(2,"Jack",10000,"Developer",11,101);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO emp VALUES(3,"Sam",15000,"Senior developer",11,101);
+Query OK, 1 row affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO emp VALUES(4,"Tom",12000,"Tester",11,102);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(5,"Som",11000,"Quality Analyst",11,102);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>
+mysql>
+mysql> INSERT INTO emp VALUES(1,"Raj",20000,"Manager",12,101);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(2,"Jack",10000,"Developer",12,101);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(3,"Sam",15000,"Senior developer",12,101);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>
+mysql> INSERT INTO emp VALUES(4,"Tom",12000,"Tester",12,102);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(5,"Som",11000,"Quality Analyst",12,102);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>
+mysql>
+mysql> INSERT INTO emp VALUES(1,"Raj",20000,"Manager",13,101);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(2,"Jack",10000,"Developer",13,101);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(3,"Sam",15000,"Senior developer",13,101);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>
+mysql> INSERT INTO emp VALUES(4,"Tom",12000,"Tester",13,102);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(5,"Som",11000,"Quality Analyst",13,102);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>
+mysql>
+mysql> INSERT INTO emp VALUES(6,"Mack",20000,"Manager",14,103);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(7,"Sham",10000,"Developer",14,103);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(8,"Bheem",15000,"Senior developer",14,103);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>
+mysql> INSERT INTO emp VALUES(9,"Anirudth",12000,"Tester",14,102);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(10,"Kartik",11000,"Quality Analyst",14,102);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>
+mysql>
+mysql> INSERT INTO emp VALUES(6,"Mack",20000,"Manager",15,103);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(7,"Sham",10000,"Developer",15,103);
+Query OK, 1 row affected (0.27 sec)
+
+mysql> INSERT INTO emp VALUES(8,"Bheem",15000,"Senior developer",15,103);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>
+mysql> INSERT INTO emp VALUES(9,"Anirudth",12000,"Tester",15,102);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO emp VALUES(10,"Kartik",11000,"Quality Analyst",15,102);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>
+mysql> SELECT * From emp WHERE designation="Manager";
++------+-------+--------+-------------+------+------+
+| eNo  | eName | salary | designation | pNo  | dNo  |
++------+-------+--------+-------------+------+------+
+|    1 | Raj   |  20000 | Manager     |   11 |  101 |
+|    1 | Raj   |  20000 | Manager     |   12 |  101 |
+|    1 | Raj   |  20000 | Manager     |   13 |  101 |
+|    6 | Mack  |  20000 | Manager     |   14 |  103 |
+|    6 | Mack  |  20000 | Manager     |   15 |  103 |
++------+-------+--------+-------------+------+------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> UPDATE emp,project
+    -> SET salary = salary+5000
+    -> WHERE  budget>20000;
+Query OK, 25 rows affected (0.04 sec)
+Rows matched: 25  Changed: 25  Warnings: 0
+
+mysql> SELECT * FROM emp;
++------+----------+--------+------------------+------+------+
+| eNo  | eName    | salary | designation      | pNo  | dNo  |
++------+----------+--------+------------------+------+------+
+|    1 | Raj      |  25000 | Manager          |   11 |  101 |
+|    2 | Jack     |  15000 | Developer        |   11 |  101 |
+|    3 | Sam      |  20000 | Senior developer |   11 |  101 |
+|    4 | Tom      |  17000 | Tester           |   11 |  102 |
+|    5 | Som      |  16000 | Quality Analyst  |   11 |  102 |
+|    1 | Raj      |  25000 | Manager          |   12 |  101 |
+|    2 | Jack     |  15000 | Developer        |   12 |  101 |
+|    3 | Sam      |  20000 | Senior developer |   12 |  101 |
+|    4 | Tom      |  17000 | Tester           |   12 |  102 |
+|    5 | Som      |  16000 | Quality Analyst  |   12 |  102 |
+|    1 | Raj      |  25000 | Manager          |   13 |  101 |
+|    2 | Jack     |  15000 | Developer        |   13 |  101 |
+|    3 | Sam      |  20000 | Senior developer |   13 |  101 |
+|    4 | Tom      |  17000 | Tester           |   13 |  102 |
+|    5 | Som      |  16000 | Quality Analyst  |   13 |  102 |
+|    6 | Mack     |  25000 | Manager          |   14 |  103 |
+|    7 | Sham     |  15000 | Developer        |   14 |  103 |
+|    8 | Bheem    |  20000 | Senior developer |   14 |  103 |
+|    9 | Anirudth |  17000 | Tester           |   14 |  102 |
+|   10 | Kartik   |  16000 | Quality Analyst  |   14 |  102 |
+|    6 | Mack     |  25000 | Manager          |   15 |  103 |
+|    7 | Sham     |  15000 | Developer        |   15 |  103 |
+|    8 | Bheem    |  20000 | Senior developer |   15 |  103 |
+|    9 | Anirudth |  17000 | Tester           |   15 |  102 |
+|   10 | Kartik   |  16000 | Quality Analyst  |   15 |  102 |
++------+----------+--------+------------------+------+------+
+25 rows in set (0.00 sec)
+
+mysql>
+mysql> ALTER TABLE project
+    -> ADD hours_needed int;
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM project;
++-----+--------------+--------+------+--------------+
+| pNo | pName        | budget | dNo  | hours_needed |
++-----+--------------+--------+------+--------------+
+|  11 | Java Desktop |  40000 |  101 |         NULL |
+|  12 | Java Web     |  50000 |  102 |         NULL |
+|  13 | PHP          |  20000 |  103 |         NULL |
+|  14 | Python       |  25000 |  101 |         NULL |
+|  15 | AWS          |  15000 |  102 |         NULL |
++-----+--------------+--------+------+--------------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> ALTER TABLE project
+    -> RENAME COLUMN pName TO projectName;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> SELECT * FROM emp,dept WHERE pNo=12 AND location="New Delhi";
++------+-------+--------+------------------+------+------+-----+--------+-----------+
+| eNo  | eName | salary | designation      | pNo  | dNo  | dNo | dName  | location  |
++------+-------+--------+------------------+------+------+-----+--------+-----------+
+|    1 | Raj   |  25000 | Manager          |   12 |  101 | 101 | A Dept | New Delhi |
+|    2 | Jack  |  15000 | Developer        |   12 |  101 | 101 | A Dept | New Delhi |
+|    3 | Sam   |  20000 | Senior developer |   12 |  101 | 101 | A Dept | New Delhi |
+|    4 | Tom   |  17000 | Tester           |   12 |  102 | 101 | A Dept | New Delhi |
+|    5 | Som   |  16000 | Quality Analyst  |   12 |  102 | 101 | A Dept | New Delhi |
++------+-------+--------+------------------+------+------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT * FROM project ORDER BY budget DESC;
++-----+--------------+--------+------+--------------+
+| pNo | projectName  | budget | dNo  | hours_needed |
++-----+--------------+--------+------+--------------+
+|  12 | Java Web     |  50000 |  102 |         NULL |
+|  11 | Java Desktop |  40000 |  101 |         NULL |
+|  14 | Python       |  25000 |  101 |         NULL |
+|  13 | PHP          |  20000 |  103 |         NULL |
+|  15 | AWS          |  15000 |  102 |         NULL |
++-----+--------------+--------+------+--------------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT * FROM project,dept  WHERE location ="Chennai" ORDER BY budget ;
++-----+--------------+--------+------+--------------+-----+--------+----------+
+| pNo | projectName  | budget | dNo  | hours_needed | dNo | dName  | location |
++-----+--------------+--------+------+--------------+-----+--------+----------+
+|  15 | AWS          |  15000 |  102 |         NULL | 102 | B Dept | Chennai  |
+|  13 | PHP          |  20000 |  103 |         NULL | 102 | B Dept | Chennai  |
+|  14 | Python       |  25000 |  101 |         NULL | 102 | B Dept | Chennai  |
+|  11 | Java Desktop |  40000 |  101 |         NULL | 102 | B Dept | Chennai  |
+|  12 | Java Web     |  50000 |  102 |         NULL | 102 | B Dept | Chennai  |
++-----+--------------+--------+------+--------------+-----+--------+----------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT * FROM emp WHERE designation="Developer" OR designation="Senior developer";
++------+-------+--------+------------------+------+------+
+| eNo  | eName | salary | designation      | pNo  | dNo  |
++------+-------+--------+------------------+------+------+
+|    2 | Jack  |  15000 | Developer        |   11 |  101 |
+|    3 | Sam   |  20000 | Senior developer |   11 |  101 |
+|    2 | Jack  |  15000 | Developer        |   12 |  101 |
+|    3 | Sam   |  20000 | Senior developer |   12 |  101 |
+|    2 | Jack  |  15000 | Developer        |   13 |  101 |
+|    3 | Sam   |  20000 | Senior developer |   13 |  101 |
+|    7 | Sham  |  15000 | Developer        |   14 |  103 |
+|    8 | Bheem |  20000 | Senior developer |   14 |  103 |
+|    7 | Sham  |  15000 | Developer        |   15 |  103 |
+|    8 | Bheem |  20000 | Senior developer |   15 |  103 |
++------+-------+--------+------------------+------+------+
+10 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT COUNT(pNo)
+    -> FROM dept,project
+    -> WHERE projectName="Java Web" AND projectName="Java Desktop";
++------------+
+| COUNT(pNo) |
++------------+
+|          0 |
++------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> SELECT SUM(salary) AS "New Delhi"
+    -> FROM emp
+    -> WHERE dNo=101;
++-----------+
+| New Delhi |
++-----------+
+|    180000 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> SELECT SUM(salary) AS "Chennai"
+    -> FROM emp
+    -> WHERE dNo=102;
++---------+
+| Chennai |
++---------+
+|  165000 |
++---------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> SELECT SUM(salary) AS "Mumbai"
+    -> FROM emp
+    -> WHERE dNo=103;
++--------+
+| Mumbai |
++--------+
+| 120000 |
++--------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> UPDATE project
+    -> SET budget=budget+5000
+    -> WHERE dNo=101;
+Query OK, 2 rows affected (0.06 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM project;
++-----+--------------+--------+------+--------------+
+| pNo | projectName  | budget | dNo  | hours_needed |
++-----+--------------+--------+------+--------------+
+|  11 | Java Desktop |  45000 |  101 |         NULL |
+|  12 | Java Web     |  50000 |  102 |         NULL |
+|  13 | PHP          |  20000 |  103 |         NULL |
+|  14 | Python       |  30000 |  101 |         NULL |
+|  15 | AWS          |  15000 |  102 |         NULL |
++-----+--------------+--------+------+--------------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT * FROM emp WHERE dNo=101 AND pNo=11 OR pNo=12;
++------+-------+--------+------------------+------+------+
+| eNo  | eName | salary | designation      | pNo  | dNo  |
++------+-------+--------+------------------+------+------+
+|    1 | Raj   |  25000 | Manager          |   11 |  101 |
+|    2 | Jack  |  15000 | Developer        |   11 |  101 |
+|    3 | Sam   |  20000 | Senior developer |   11 |  101 |
+|    1 | Raj   |  25000 | Manager          |   12 |  101 |
+|    2 | Jack  |  15000 | Developer        |   12 |  101 |
+|    3 | Sam   |  20000 | Senior developer |   12 |  101 |
+|    4 | Tom   |  17000 | Tester           |   12 |  102 |
+|    5 | Som   |  16000 | Quality Analyst  |   12 |  102 |
++------+-------+--------+------------------+------+------+
+8 rows in set (0.00 sec)
